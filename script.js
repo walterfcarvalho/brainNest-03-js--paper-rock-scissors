@@ -61,7 +61,7 @@ const getPlayerShot = (roundNo) => {
         option = prompt(txtPrompt)
 
         errorMessage = (validValues.indexOf(option) < 0) 
-        ? "You must choose 0, 1 or 2 \n" 
+        ? "You must choose 1, 2 or 3 \n" 
         : ""
     }
     return getChoice(option -1);
