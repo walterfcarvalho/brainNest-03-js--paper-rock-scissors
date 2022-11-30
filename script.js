@@ -43,7 +43,6 @@ const compareShots = (playerShot, machineShot ) => {
         'Scissors-Rock': {value:-1, message: 'Scissors is breaked by Rock'},
         'Scissors-Paper': {value:1, message: 'Scissors cuts Paper' },
     }
-
     return ( playerShot == machineShot) 
     ? {value: 0, message: 'Draw !' }
     : ShotsMap[`${playerShot}-${machineShot}`]  
@@ -56,11 +55,9 @@ const getPlayerShot = (roundNo) => {
     let option;
     let errorMessage='';
     
-
     while (validValues.indexOf(option) < 0 ) {
         let txtPrompt = `Round ${roundNo}\n`
         txtPrompt += `${errorMessage}Choose yout Shot, 1:Rock, 2:Paper, 3:Scissors.`
-    
         option = prompt(txtPrompt)
 
         errorMessage = (validValues.indexOf(option) < 0) 
@@ -79,7 +76,6 @@ const playRound = (roundNo) => {
     return compareShots( playerShot, machineShot ) 
 }
 
-
 function game() {
     let scorePlayer = 0;
     let scoreMachine = 0;
@@ -90,9 +86,13 @@ function game() {
         if (matchResult.value !== 0) {
             (matchResult.value == 1) ? scorePlayer ++ : scoreMachine ++    
         }
-
+        
         console.log(`Result: ${matchResult.message}`)
         console.log(`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`);
+
+        if (scoreMachine >= 3 || scorePlayer >= 3) {
+            break
+        }
     }
     console.log( `${ (scorePlayer == scoreMachine)? DRAW_MSG : (scorePlayer > scoreMachine) ? WIN_MSG: LOST_MSG}`)
 }
