@@ -1,72 +1,72 @@
-import {WIN_MSG, LOST_MSG, DRAW_MSG, VALIDATIONS_MSG }  from './constants.js';
+import {SHOTS_MAP, MSG } from './constants.js';
 
 console.clear();
-console.log(`\n\n\n\n\n\n\n`);
+console.log(`\n\n\n\n\n\n\n\n`);
+
+console.log(...MSG.begin);
 
 const SHOT_LIST = ['Rock', 'Paper', 'Scissors'];
 
 const getChoice = shotNumber => SHOT_LIST[shotNumber];
 
-const compareShots = (playerShot, machineShot ) => {
-    let ShotsMap = {
-        'Rock-Paper': {value: -1, message: 'Rock is covered by Paper'},
-        'Rock-Scissors': {value: 1, message: 'Rock breaks Scissors'},
-        'Paper-Scissors': {value: -1, message: 'Paper is cutted by Scissors'},
-        'Paper-Rock': {value:1, message: 'Paper covers Rock'},
-        'Scissors-Rock': {value:-1, message: 'Scissors is breaked by Rock'},
-        'Scissors-Paper': {value:1, message: 'Scissors cuts Paper' },
-    }
-    return ( playerShot == machineShot) 
-    ? {value: 0, message: 'Draw !' }
-    : ShotsMap[`${playerShot}-${machineShot}`]  
+const compareShots = (playerShot, machineShot) => {
+	return (playerShot == machineShot)
+		? { value: 0, message: 'Draw !' }
+		: SHOTS_MAP[`${playerShot}-${machineShot}`]
 }
 
-const getMachineShot = () => getChoice(Math.floor(Math.random() * 3) );
+const getMachineShot = () => getChoice(Math.floor(Math.random() * 3));
 
 const getPlayerShot = (roundNo) => {
-    let validValues = ["1","2","3"]
-    let option;
-    let errorMessage='';
-    
-    while (validValues.indexOf(option) < 0 ) {
-        let txtPrompt = `Round ${roundNo}\n`
-        txtPrompt += `${errorMessage}\nChoose yout Shot, 1:Rock, 2:Paper, 3:Scissors.`
-        option = prompt(txtPrompt)
+	let validValues = ["1", "2", "3"]
+	let option;
+	let errorMessage = '';
 
-        errorMessage = (validValues.indexOf(option) < 0) 
-        ? VALIDATIONS_MSG[Math.floor(Math.random() * VALIDATIONS_MSG.length)]
-        : ""
-    }
-    return getChoice(option -1);
+	while (validValues.indexOf(option) < 0) {
+		let txtPrompt = `Round ${roundNo}\n`
+		txtPrompt += `${errorMessage}\nChoose yout Shot, 1:Rock, 2:Paper, 3:Scissors.`
+		
+		option = prompt(txtPrompt)
+
+		errorMessage = (validValues.indexOf(option) < 0)
+			? MSG.validation[Math.floor(Math.random() * MSG.validation.length)]
+			: ""
+	}
+	return getChoice(option - 1);
 }
 
 const playRound = (roundNo) => {
-    let playerShot = getPlayerShot(roundNo);
-    let machineShot = getMachineShot(roundNo);
+	let playerShot = getPlayerShot(roundNo);
+	let machineShot = getMachineShot(roundNo);
 
-    console.log(`Round ${roundNo} \n\nPlayer Shot: ${playerShot}  -  Machine Shot: ${machineShot} `)
+	console.log(`\nRound ${roundNo} `)
+	console.log(`Player Shot: ${playerShot}  -  Machine Shot: ${machineShot}`)
 
-    return compareShots( playerShot, machineShot ) 
+	return compareShots(playerShot, machineShot)
 }
 
-function game() {
-    let scorePlayer = 0;
-    let scoreMachine = 0;
-    
-    for ( let i=1; i<=5; i++){
-        let matchResult = playRound(i);
+const game = () => {
+	let scorePlayer = 0;
+	let scoreMachine = 0;
 
-        if (matchResult.value !== 0) {
-            (matchResult.value == 1) ? scorePlayer ++ : scoreMachine ++    
-        }
-        
-        console.log(`Result: ${matchResult.message}`)
-        console.log(`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`);
+	for (let i = 1; i <= 5; i++) {
+		let matchResult = playRound(i);
 
-        if (scoreMachine >= 3 || scorePlayer >= 3) {
-            break
-        }
-    }
-    console.log( `${ (scorePlayer == scoreMachine)? DRAW_MSG : (scorePlayer > scoreMachine) ? WIN_MSG: LOST_MSG}`)
+		if (matchResult.value !== 0) {
+			(matchResult.value == 1) ? scorePlayer++ : scoreMachine++
+		}
+
+		console.log(`Result: ${matchResult.message}`)
+		console.log(`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`);
+
+		if (scoreMachine >= 3 || scorePlayer >= 3) {
+			break
+		}
+	}
+	
+	console.log( ... (scorePlayer == scoreMachine) 
+		? (MSG.draw)
+		: (scorePlayer > scoreMachine) ? [...MSG.win] : [...MSG.lost]
+	)
 }
 game()
