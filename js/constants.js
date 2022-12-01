@@ -1,22 +1,27 @@
 const MSG = {
     win: ["%c   😉      You win !!      ",
         "background-color: green ; color: white ; font-weight: bold ; " +
-        "font-size: 40px ; widht:100%  " +
+        "font-size: 40px ; widht:100%;  " +
         "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
         
         , lost: ["%c    😔  You lost...      ",
         "background-color: red ; color: white ; font-weight: bold ; " +
-        "font-size: 40px ; widht:100%  " +
+        "font-size: 40px ; " +
         "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
         
         , draw: ["%c    😐  Draw      ",
-        "background-color: yellow ; color: white ; font-weight: bold ; " +
-        "font-size: 40px ; widht:100%  " +
+        "background-color: yellow; color: white ; font-weight: bold ; " +
+        "font-size: 40px; " +
+        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+
+        , giveUp: ["%c  😢 Oh no, you choosed give up.      ",
+        "background-color: gray ; color: white ; font-weight: bold ; " +
+        "font-size: 40px ; " +
         "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
 
         , begin: ["%c✊  ✋  🖖  Let's begin  ",  
-        "background-color: blue ; color: white ; font-weight: bold ; " +
-        "font-size: 40px ; widht:100%  " +
+        "background-color: blue; color: white ; font-weight: bold ; " +
+        "font-size: 40px ; " +
         "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
         
     , validation: [

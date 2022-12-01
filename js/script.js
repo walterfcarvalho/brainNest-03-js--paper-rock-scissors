@@ -5,7 +5,8 @@ console.clear();
 console.log(`\n \n \n \n \n \n \n \n\n \n \n`);
 
 console.log(...MSG.begin);
-const SHOT_LIST = ['Rock', 'Paper', 'Scissors'];
+
+const SHOT_LIST = ['Rock', 'Paper', 'Scissors', null];
 
 const getChoice = shotNumber => SHOT_LIST[shotNumber];
 
@@ -18,13 +19,13 @@ const compareShots = (playerShot, machineShot) => {
 const getMachineShot = () => getChoice(Math.floor(Math.random() * 3));
 
 const getPlayerShot = (roundNo) => {
-	let validValues = ["1", "2", "3"]
+	let validValues = ["1", "2", "3", null]
 	let option;
 	let errorMessage = '';
 
 	while (validValues.indexOf(option) < 0) {
 		let txtPrompt = `Round ${roundNo}\n`
-		txtPrompt += `${errorMessage}\nChoose yout Shot, 1:Rock, 2:Paper, 3:Scissors.`
+		txtPrompt += `${errorMessage}\nChoose your Shot, 1:Rock, 2:Paper, 3:Scissors.`
 		
 		option = prompt(txtPrompt)
 
@@ -42,7 +43,9 @@ const playRound = (roundNo) => {
 	console.log(`\nRound ${roundNo} `)
 	console.log(`Player Shot: ${playerShot}  -  Machine Shot: ${machineShot}`)
 
-	return compareShots(playerShot, machineShot)
+	return (playRound == undefined) 
+	? undefined
+	: compareShots(playerShot, machineShot)
 }
 
 const game = () => {
@@ -51,6 +54,12 @@ const game = () => {
 
 	for (let i = 1; i <= 5; i++) {
 		let matchResult = playRound(i);
+
+		if (matchResult == undefined){
+			scorePlayer = -1;
+			scoreMachine = -1;
+			break;
+		}
 
 		if (matchResult.value !== 0) {
 			(matchResult.value == 1) ? scorePlayer++ : scoreMachine++
@@ -64,9 +73,15 @@ const game = () => {
 		}
 	}
 	
-	console.log( ... (scorePlayer == scoreMachine) 
-		? (MSG.draw)
-		: (scorePlayer > scoreMachine) ? [...MSG.win] : [...MSG.lost]
-	)
+
+	if ( scorePlayer == -1 && scoreMachine == -1 ) {
+		console.log( ... MSG.giveUp) 
+	}
+	else {
+		console.log( ... (scorePlayer == scoreMachine) 
+			? (MSG.draw)
+			: (scorePlayer > scoreMachine) ? [...MSG.win] : [...MSG.lost]
+		)
+	}
 }
 game()
