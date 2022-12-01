@@ -1,10 +1,10 @@
 import {SHOTS_MAP, MSG } from './constants.js';
 
 console.clear();
-console.log(`\n\n\n\n\n\n\n\n`);
+
+console.log(`\n \n \n \n \n \n \n \n\n \n \n`);
 
 console.log(...MSG.begin);
-
 const SHOT_LIST = ['Rock', 'Paper', 'Scissors'];
 
 const getChoice = shotNumber => SHOT_LIST[shotNumber];
