@@ -2,27 +2,27 @@ const MSG = {
     win: ["%c   😉      You win !!      ",
         "background-color: green ; color: white ; font-weight: bold ; " +
         "font-size: 40px ; widht:100%;  " +
-        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
         
         , lost: ["%c    😔  You lost...      ",
         "background-color: red ; color: white ; font-weight: bold ; " +
         "font-size: 40px ; " +
-        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
         
         , draw: ["%c    😐  Draw      ",
         "background-color: yellow; color: white ; font-weight: bold ; " +
         "font-size: 40px; " +
-        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
 
         , giveUp: ["%c  😢 Oh no, you choosed give up.      ",
         "background-color: gray ; color: white ; font-weight: bold ; " +
         "font-size: 40px ; " +
-        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
 
         , begin: ["%c✊  ✋  🖖  Let's begin  ",  
         "background-color: blue; color: white ; font-weight: bold ; " +
         "font-size: 40px ; " +
-        "font-family: 'american typewriter'; text-shadow: 1px 1px 5px black ;"]
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
         
     , validation: [
         "No, no no, you should choose 1,2 or 3.",
@@ -36,8 +36,50 @@ const MSG = {
     00101100 00100000 00110010 00111010 01010000 01100001 
     01110000 01100101 01110010 00101100 00100000 00110011 
     00111010 01010011 01100011 01101001 01110011 01110011 
-    01101111 01110010 01110011`
-    ]
+    01101111 01110010 01110011`]
+    
+    , roundShoots : [
+    "",
+    "background-color: orange; color: white ;" +
+    "font-size: 16px ; " +
+    "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    
+    , winRound : [
+    "",
+    "background-color: red; color: white ;" +
+    "font-size: 16px ; " +
+    "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , drawRound : [
+    "",
+    "background-color: red; color: white ;" +
+    "font-size: 16px ; " +
+    "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , lostRound : [
+    "",
+    "background-color: red; color: white ;" +
+    "font-size: 16px ; " +
+    "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+
+    , round1:[ "",
+        "background-color: #ffc266; color: white ;" +
+        "font-size: 14px ; " +
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , round2:[ "",
+        "background-color:  #ffad33; color: white ;" +
+        "font-size: 16px ; " +
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , round3:[ "",
+        "background-color: #ff9900; color: white ;" +
+        "font-size: 18px ; " +
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , round4:[ "",
+        "background-color: #cc7a00; color: white ;" +
+        "font-size: 20px ; " +
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
+    , round5:[ "",
+        "background-color: #995c00; color: white ;" +
+        "font-size: 22px ; " +
+        "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
 }
 
 const SHOTS_MAP = {

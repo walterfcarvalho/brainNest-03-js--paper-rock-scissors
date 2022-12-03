@@ -18,6 +18,7 @@ const compareShots = (playerShot, machineShot) => {
 
 const getMachineShot = () => getChoice(Math.floor(Math.random() * 3));
 
+
 const getPlayerShot = (roundNo) => {
 	let validValues = ["1", "2", "3", null]
 	let option;
@@ -37,36 +38,45 @@ const getPlayerShot = (roundNo) => {
 }
 
 const playRound = (roundNo) => {
+	let objResult = {};
 	let playerShot = getPlayerShot(roundNo);
 	let machineShot = getMachineShot(roundNo);
 
-	console.log(`\nRound ${roundNo} `)
-	console.log(`Player Shot: ${playerShot}  -  Machine Shot: ${machineShot}`)
+	objResult.shotMessage = 
+		`Round: ${roundNo}       Player Shot: ${playerShot}      Machine Shot: ${machineShot}`,
+		MSG[`round${roundNo}`][1]
 
-	return (playRound == undefined) 
+
+	objResult.result = (playRound == undefined) 
 	? undefined
 	: compareShots(playerShot, machineShot)
+
+	return objResult;
 }
 
 const game = () => {
+	let consoleMsg = ""
 	let scorePlayer = 0;
 	let scoreMachine = 0;
 
 	for (let i = 1; i <= 5; i++) {
 		let matchResult = playRound(i);
 
-		if (matchResult == undefined){
+		if (matchResult.result == undefined){
 			scorePlayer = -1;
 			scoreMachine = -1;
 			break;
 		}
 
-		if (matchResult.value !== 0) {
-			(matchResult.value == 1) ? scorePlayer++ : scoreMachine++
+		if (matchResult.result.value !== 0) {
+			(matchResult.result.value == 1) ? scorePlayer++ : scoreMachine++
 		}
 
-		console.log(`Result: ${matchResult.message}`)
-		console.log(`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`);
+		consoleMsg = `%c` + 
+		`${matchResult.shotMessage} \n`+
+		`Result: ${matchResult.result.message} \n`+
+		`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`
+		console.log( consoleMsg, MSG[`round${i}`][1]);
 
 		if (scoreMachine >= 3 || scorePlayer >= 3) {
 			break
