@@ -1,4 +1,4 @@
-import {SHOTS_MAP, MSG } from './constants.js';
+import { MSG, SHOTS_MAP } from './constants.js';
 
 console.clear();
 
@@ -17,7 +17,6 @@ const compareShots = (playerShot, machineShot) => {
 }
 
 const getMachineShot = () => getChoice(Math.floor(Math.random() * 3));
-
 
 const getPlayerShot = (roundNo) => {
 	let validValues = ["1", "2", "3", null]
@@ -45,7 +44,6 @@ const playRound = (roundNo) => {
 	objResult.shotMessage = 
 		`Round: ${roundNo}       Player Shot: ${playerShot}      Machine Shot: ${machineShot}`,
 		MSG[`round${roundNo}`][1]
-
 
 	objResult.result = (playRound == undefined) 
 	? undefined
@@ -78,12 +76,11 @@ const game = () => {
 		`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`
 		console.log( consoleMsg, MSG[`round${i}`][1]);
 
-		if (scoreMachine >= 3 || scorePlayer >= 3) {
+		if (scoreMachine == 3 || scorePlayer == 3) {
 			break
 		}
 	}
 	
-
 	if ( scorePlayer == -1 && scoreMachine == -1 ) {
 		console.log( ... MSG.giveUp) 
 	}
