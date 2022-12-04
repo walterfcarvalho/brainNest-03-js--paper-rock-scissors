@@ -1,4 +1,4 @@
-const MSG = {
+const MESSAGES = {
     win: ["%c   😉      You win !!      ",
         "background-color: green ; color: white ; font-weight: bold ; " +
         "font-size: 40px ; widht:100%;  " +
@@ -62,23 +62,23 @@ const MSG = {
 
     , round1:[ "",
         "background-color: #ffc266; color: white ;" +
-        "font-size: 14px ; " +
+        "font-size: 16px ; " +
         "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
-    , round2:[ "",
+        , round2:[ "",
         "background-color:  #ffad33; color: white ;" +
         "font-size: 16px ; " +
         "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
     , round3:[ "",
         "background-color: #ff9900; color: white ;" +
-        "font-size: 18px ; " +
+        "font-size: 18px; " +
         "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
     , round4:[ "",
         "background-color: #cc7a00; color: white ;" +
-        "font-size: 20px ; " +
+        "font-size: 18px ; " +
         "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
-    , round5:[ "",
+        , round5:[ "",
         "background-color: #995c00; color: white ;" +
-        "font-size: 22px ; " +
+        "font-size: 20px ; " +
         "font-family: 'Arial'; text-shadow: 1px 1px 5px black ;"]
 }
 
@@ -91,4 +91,4 @@ const SHOTS_MAP = {
     'Scissors-Paper': { value: 1, message: 'Scissors cuts Paper' },
 }
 
-export { MSG, SHOTS_MAP }
+export { MESSAGES, SHOTS_MAP }

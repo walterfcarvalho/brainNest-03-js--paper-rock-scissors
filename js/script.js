@@ -1,12 +1,6 @@
-import { MSG, SHOTS_MAP } from './constants.js';
+import { MESSAGES, SHOTS_MAP } from './constants.js';
 
-console.clear();
-
-console.log(`\n \n \n \n \n \n \n \n\n \n \n`);
-
-console.log(...MSG.begin);
-
-const SHOT_LIST = ['Rock', 'Paper', 'Scissors', null];
+const SHOT_LIST = ['Rock', 'Paper', 'Scissors'];
 
 const getChoice = shotNumber => SHOT_LIST[shotNumber];
 
@@ -25,15 +19,15 @@ const getPlayerShot = (roundNo) => {
 
 	while (validValues.indexOf(option) < 0) {
 		let txtPrompt = `Round ${roundNo}\n`
-		txtPrompt += `${errorMessage}\nChoose your Shot, 1:Rock, 2:Paper, 3:Scissors.`
+		txtPrompt += `${errorMessage}\nChoose your Shot::  1:Rock  2:Paper  3:Scissors.`
 		
 		option = prompt(txtPrompt)
 
 		errorMessage = (validValues.indexOf(option) < 0)
-			? MSG.validation[Math.floor(Math.random() * MSG.validation.length)]
+			? MESSAGES.validation[Math.floor(Math.random() * MESSAGES.validation.length)]
 			: ""
 	}
-	return getChoice(option - 1);
+	return  (option== null) ? null : getChoice(option - 1)
 }
 
 const playRound = (roundNo) => {
@@ -43,14 +37,18 @@ const playRound = (roundNo) => {
 
 	objResult.shotMessage = 
 		`Round: ${roundNo}       Player Shot: ${playerShot}      Machine Shot: ${machineShot}`,
-		MSG[`round${roundNo}`][1]
+		MESSAGES[`round${roundNo}`][1]
 
-	objResult.result = (playRound == undefined) 
-	? undefined
+	objResult.result = (playerShot == null) 
+	? null
 	: compareShots(playerShot, machineShot)
 
 	return objResult;
 }
+
+console.clear();
+console.log(`\n \n \n \n \n \n \n \n\n \n \n`);
+console.log(...MESSAGES.begin);
 
 const game = () => {
 	let consoleMsg = ""
@@ -60,7 +58,7 @@ const game = () => {
 	for (let i = 1; i <= 5; i++) {
 		let matchResult = playRound(i);
 
-		if (matchResult.result == undefined){
+		if (matchResult.result == null){
 			scorePlayer = -1;
 			scoreMachine = -1;
 			break;
@@ -74,7 +72,7 @@ const game = () => {
 		`${matchResult.shotMessage} \n`+
 		`Result: ${matchResult.result.message} \n`+
 		`Scores: Player: ${scorePlayer}, Machine: ${scoreMachine}`
-		console.log( consoleMsg, MSG[`round${i}`][1]);
+		console.log( consoleMsg, MESSAGES[`round${i}`][1]);
 
 		if (scoreMachine == 3 || scorePlayer == 3) {
 			break
@@ -82,12 +80,12 @@ const game = () => {
 	}
 	
 	if ( scorePlayer == -1 && scoreMachine == -1 ) {
-		console.log( ... MSG.giveUp) 
+		console.log( ... MESSAGES.giveUp) 
 	}
 	else {
 		console.log( ... (scorePlayer == scoreMachine) 
-			? (MSG.draw)
-			: (scorePlayer > scoreMachine) ? [...MSG.win] : [...MSG.lost]
+			? (MESSAGES.draw)
+			: (scorePlayer > scoreMachine) ? [...MESSAGES.win] : [...MESSAGES.lost]
 		)
 	}
 }
