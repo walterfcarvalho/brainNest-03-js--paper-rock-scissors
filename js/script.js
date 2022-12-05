@@ -1,45 +1,46 @@
 import { MESSAGES, SHOTS_MAP } from './constants.js';
 
-const SHOT_LIST = ['Rock', 'Paper', 'Scissors'];
-
-const getChoice = shotNumber => SHOT_LIST[shotNumber];
+const SHOT_LIST = ['rock', 'paper', 'scissors', null];
 
 const compareShots = (playerShot, machineShot) => {
+
 	return (playerShot == machineShot)
 		? { value: 0, message: 'Draw !' }
 		: SHOTS_MAP[`${playerShot}-${machineShot}`]
 }
 
-const getMachineShot = () => getChoice(Math.floor(Math.random() * 3));
-
 const getPlayerShot = (roundNo) => {
-	let validValues = ["1", "2", "3", null]
 	let option;
 	let errorMessage = '';
 
-	while (validValues.indexOf(option) < 0) {
+	while (SHOT_LIST.indexOf(option) < 0) {
 		let txtPrompt = `Round ${roundNo}\n`
-		txtPrompt += `${errorMessage}\nChoose your Shot::  1:Rock  2:Paper  3:Scissors.`
+		txtPrompt += `${errorMessage}\nChoose your Shot: rock, paper or scissors.`
 		
 		option = prompt(txtPrompt)
 
-    if ( option == null){ 
-     if (!confirm('Wanna Give up?')) 
-      option = -1
-      continue
-    }
+    if (option == null){
+      if (!confirm('Wanna Give up?')){
+        option = -1
+        continue
+      }
 
-		errorMessage = (validValues.indexOf(option) < 0)
+    } else {
+      option = option.toLowerCase().replaceAll(/\s/g,'')
+    }      
+  
+
+		errorMessage = (SHOT_LIST.indexOf(option) < 0)
 			? MESSAGES.validation[Math.floor(Math.random() * MESSAGES.validation.length)]
 			: ""
 	}
-	return  (option== null) ? null : getChoice(option - 1)
+	return  (option== null) ? null : SHOT_LIST[SHOT_LIST.indexOf(option)] 
 }
 
 const playRound = (roundNo) => {
 	let objResult = {};
 	let playerShot = getPlayerShot(roundNo);
-	let machineShot = getMachineShot(roundNo);
+	let machineShot = SHOT_LIST[Math.floor(Math.random() * 3)];
 
 	objResult.shotMessage = 
 		`Round: ${roundNo}       Player Shot: ${playerShot}      Machine Shot: ${machineShot}`,

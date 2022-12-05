@@ -83,12 +83,12 @@ const MESSAGES = {
 }
 
 const SHOTS_MAP = {
-    'Rock-Paper': { value: -1, message: 'Rock is covered by Paper' },
-    'Rock-Scissors': { value: 1, message: 'Rock breaks Scissors' },
-    'Paper-Scissors': { value: -1, message: 'Paper is cutted by Scissors' },
-    'Paper-Rock': { value: 1, message: 'Paper covers Rock' },
-    'Scissors-Rock': { value: -1, message: 'Scissors is breaked by Rock' },
-    'Scissors-Paper': { value: 1, message: 'Scissors cuts Paper' },
+    'rock-paper': { value: -1, message: 'Rock is covered by Paper' },
+    'rock-scissors': { value: 1, message: 'Rock breaks Scissors' },
+    'paper-scissors': { value: -1, message: 'Paper is cutted by Scissors' },
+    'paper-rock': { value: 1, message: 'Paper covers Rock' },
+    'scissors-rock': { value: -1, message: 'Scissors is breaked by Rock' },
+    'scissors-paper': { value: 1, message: 'Scissors cuts Paper' },
 }
 
 export { MESSAGES, SHOTS_MAP }
