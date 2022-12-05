@@ -23,6 +23,12 @@ const getPlayerShot = (roundNo) => {
 		
 		option = prompt(txtPrompt)
 
+    if ( option == null){ 
+     if (!confirm('Wanna Give up?')) 
+      option = -1
+      continue
+    }
+
 		errorMessage = (validValues.indexOf(option) < 0)
 			? MESSAGES.validation[Math.floor(Math.random() * MESSAGES.validation.length)]
 			: ""
@@ -59,9 +65,9 @@ const game = () => {
 		let matchResult = playRound(i);
 
 		if (matchResult.result == null){
-			scorePlayer = -1;
-			scoreMachine = -1;
-			break;
+        scorePlayer = -1;
+        scoreMachine = -1;
+        break
 		}
 
 		if (matchResult.result.value !== 0) {
